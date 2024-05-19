@@ -61,7 +61,7 @@ with open("output.txt", "a") as file:
 
             #plt.close()
             print("Fourrier transform done for: " + ''.join(str(int((i/count)*100))) + "% of all files     ", end="\r")
-            file.write(str(freq[highest_index]) + "," + str(slice.get_length(audio_path)) + ":\n")
+            file.write(str(int(freq[highest_index])) + "," + str(slice.get_length(audio_path)) + ":\n")
             i += 1
     except:
         pass
