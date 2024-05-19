@@ -36,9 +36,9 @@ print("done slicing")
 
 with open("output.txt", "a") as file:
     try:
-        i = 0
+        num = 0
         while True:
-            audio_path = "temp_audio/temp_" + str(i) + ".wav" 
+            audio_path = "temp_audio/temp_" + str(num) + ".wav" 
             audio, sr = librosa.load(audio_path)
 
             audio_ft = np.fft.fft(audio)
@@ -51,7 +51,14 @@ with open("output.txt", "a") as file:
 
             bins = int(len(freq) * 0.5)
 
-            highest_index = np.argmax(magnitude[:bins])
+            #highest_index = np.argmax(magnitude[:bins])
+            highest_index = 0
+            for index, i in enumerate(magnitude):
+                if i > magnitude[highest_index]:
+                    highest_index = index
+            
+            #print(highest_index)
+                
 
             #plt.plot(freq[:bins], magnitude[:bins])
             #plt.xlabel("Frequencies")
@@ -60,9 +67,9 @@ with open("output.txt", "a") as file:
             #plt.savefig("out/Temp " + str(i))
 
             #plt.close()
-            print("Fourrier transform done for: " + ''.join(str(int((i/count)*100))) + "% of all files     ", end="\r")
+            print("Fourrier transform done for: " + ''.join(str(int((num/count)*100))) + "% of all files     ", end="\r")
             file.write(str(int(freq[highest_index])) + "," + str(slice.get_length(audio_path)) + ":\n")
-            i += 1
+            num += 1
     except:
         pass
 
