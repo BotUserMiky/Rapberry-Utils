@@ -21,7 +21,7 @@ while True:
             if prev != joined_seq:
                 prev = joined_seq
                 print(joined_seq)
-                send = mqttc.publish("IOT/connection", joined_seq, qos=2)
+                send = mqttc.publish("IOT/microbit", joined_seq, qos=2)
                 send.wait_for_publish()
             seq = []
             break
