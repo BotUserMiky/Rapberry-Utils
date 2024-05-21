@@ -1,4 +1,3 @@
-from ntpath import join
 import serial
 import paho.mqtt.client as mqtt
 
